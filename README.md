@@ -4,6 +4,7 @@
 
 # Dependency
 - [`tensorflow`](https://www.tensorflow.org/?hl=ko)
+    - [Enable tensorflow GPU support](https://angelplayer.tistory.com/310)
 
 
 # reference
