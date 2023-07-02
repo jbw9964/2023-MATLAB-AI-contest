@@ -1,6 +1,7 @@
 # private files
 Jun_repo/kaggle.json
-Jun_repo/Model/checkpoints
+Jun_repo/Model
+Jun_repo/Model_polar
 Data/kaggle_data
 
 
