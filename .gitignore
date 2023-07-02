@@ -3,6 +3,8 @@ Jun_repo/kaggle.json
 Jun_repo/Model/checkpoints
 Data/kaggle_data
 
+Data/kaggle_sample/kaggle_sample/cv-valid-train
+jaewon_report/Model/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
