@@ -19,8 +19,9 @@
 - [Train Speech Command Recognition Model Using Deep Learning](https://kr.mathworks.com/help/deeplearning/ug/deep-learning-speech-recognition.html)
 
 ## Architecture review
-- [U-Net 논문 리뷰](https://medium.com/@msmapark2/u-net-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0-u-net-convolutional-networks-for-biomedical-image-segmentation-456d6901b28a)
+- [U-Net 논문 리뷰 1](https://medium.com/@msmapark2/u-net-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0-u-net-convolutional-networks-for-biomedical-image-segmentation-456d6901b28a)
     - [research paper](https://arxiv.org/abs/1611.09326)
+- [U-Net 논문 리뷰 2](https://joungheekim.github.io/2020/09/28/paper-review/)
 - [unet implementation](https://github.com/zhixuhao/unet)
     - [using keras - functional api](https://github.com/zhixuhao/unet/blob/master/model.py)
     - [U-net 실제 구현 코드](http://machinelearningkorea.com/2019/08/25/u-net-%EC%8B%A4%EC%A0%9C-%EA%B5%AC%ED%98%84-%EC%BD%94%EB%93%9C/)
