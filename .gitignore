@@ -4,9 +4,14 @@ Jun_repo/Model
 Jun_repo/Model_polar
 Jun_repo/U_Net_checkpoint
 Jun_repo/soft_U_Net_checkpoint
+Jun_repo/temp_checkpoint
+Jun_repo/test_sample
+Jun_repo/train_sample
 
 Data/kaggle_data
 Data/voice
+Data/music/music_only
+data_path
 
 Data/kaggle_sample/kaggle_sample/cv-valid-train
 jaewon_report/Model/
