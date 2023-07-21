@@ -130,7 +130,6 @@ class TrainGenerator(Sequence) :
         return int(max // self._sample_dur + 1)
     
     def __getitem__(self, index) :
-        print(self._offset_list)
         return self.__load_data(self._src_index, update=True)
     
     def on_epoch_end(self) :
