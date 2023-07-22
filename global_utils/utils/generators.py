@@ -37,7 +37,10 @@ class TrainGenerator(Sequence) :
         
         def sort_via_dur(input_list) : 
             var_list = sorted(input_list)
-            var_list = [[path, librosa.get_duration(path=path)] for path in var_list]
+            try : 
+                var_list = [[path, librosa.get_duration(path=path)] for path in var_list]
+            except : 
+                var_list = [[path, librosa.get_duration(filename=path)] for path in var_list]
             var_list = sorted(var_list, key=lambda x : x[1], reverse=True)
             return [var[0] for var in var_list]
         
@@ -49,7 +52,10 @@ class TrainGenerator(Sequence) :
         self._sample_dur = sample_dur
         
         self._offset_list = np.zeros_like(self._input_path, dtype=np.float32)
-        self._max_dur_list = [librosa.get_duration(path=path) for path in self._input_path]
+        try : 
+            self._max_dur_list = [librosa.get_duration(path=path) for path in self._input_path]
+        except : 
+            self._max_dur_list = [librosa.get_duration(filename=path) for path in self._input_path]
 
         self._index_list = [i for i in range(len(self._input_path))]
         if shuffle : np.random.shuffle(self._index_list)
@@ -124,7 +130,10 @@ class TrainGenerator(Sequence) :
         current_index = self.__get_src_list(self._src_index)
         max = 0
         for index in current_index : 
-            duration = librosa.get_duration(path=self._input_path[index])
+            try : 
+                duration = librosa.get_duration(path=self._input_path[index])
+            except : 
+                duration = librosa.get_duration(filename=self._input_path[index])
             if duration > max : max = duration
         
         return int(max // self._sample_dur + 1)
