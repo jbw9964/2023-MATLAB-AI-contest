@@ -16,6 +16,9 @@ data_path
 
 Data/kaggle_sample/kaggle_sample/cv-valid-train
 jaewon_report/Model/
+Data/cv-invalid/cv-invalid
+Data/cv-other-dev/cv-other-dev
+Data/cv-other-test/cv-other-test
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
