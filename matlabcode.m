@@ -80,5 +80,18 @@ fprintf("Merge \n")
 % audioPlayerGUI(istft(D_merge_raw, "Window", hamming(win_length), "OverlapLength", win_length*3/4, "FFTLength", n_fft), sample_rate, 'D_merge_raw');
 % stft, istft 코드
 
+disp(size(D_voice_raw));
+disp(size(D_music_raw));
+disp(size(D_merge_raw));
+%raw data의 원래 크기
+
+polar_voice = complex_to_polar(D_voice_raw);
+polar_music = complex_to_polar(D_music_raw);
+polar_merge = complex_to_polar(D_merge_raw);
+% raw data(complex data) to polar data
+
+disp(size(polar_voice));
+disp(size(polar_music));
+disp(size(polar_merge));
 
 
