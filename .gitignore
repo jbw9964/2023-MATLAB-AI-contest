@@ -11,11 +11,16 @@ Jun_repo/train_sample
 Data/kaggle_data
 Data/merge_sample
 Data/voice
+Data/music/music
 Data/music/music_only
 Data/music/pred_sample
 Data/music/pred_sample_SR6
 Data/music/pred_sample_SR11
 data_path
+
+model_save
+Presentation/presentation_eng.pptx
+Presentation/presentation_kor.pptx
 
 Data/kaggle_sample/kaggle_sample/cv-valid-train
 jaewon_report/Model/
