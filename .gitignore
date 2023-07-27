@@ -12,6 +12,7 @@ Data/kaggle_data
 Data/merge_sample
 Data/voice
 Data/music/music_only
+Data/music/pred_sample
 data_path
 
 Data/kaggle_sample/kaggle_sample/cv-valid-train
