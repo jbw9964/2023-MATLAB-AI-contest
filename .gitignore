@@ -13,6 +13,8 @@ Data/merge_sample
 Data/voice
 Data/music/music_only
 Data/music/pred_sample
+Data/music/pred_sample_SR6
+Data/music/pred_sample_SR11
 data_path
 
 Data/kaggle_sample/kaggle_sample/cv-valid-train
