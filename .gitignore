@@ -23,7 +23,13 @@ Presentation/presentation_eng.pptx
 Presentation/presentation_kor.pptx
 
 Data/kaggle_sample/kaggle_sample/cv-valid-train
+Data/cv-other-train
+Data/music_data
+Data/voice_data
 jaewon_report/Model/
+Data/cv-invalid/cv-invalid
+Data/cv-other-dev/cv-other-dev
+Data/cv-other-test/cv-other-test
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
