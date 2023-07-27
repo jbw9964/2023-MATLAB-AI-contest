@@ -5,7 +5,7 @@ __all__ = [
     "EvalGenerator"
 ]
 
-import librosa, warnings
+import librosa, warnings, os
 import numpy as np
 
 from sys import getsizeof
@@ -163,4 +163,114 @@ class EvalGenerator(TrainGenerator) :
     ):
         super().__init__(src_path, eval_num, sample_dur, max_cache_size, restrict_cache, n_fft, win_length, sample_rate, shuffle)
 
+class PredGenerator(Sequence) : 
+    def __init__(
+            self, model_input_shape : tuple, src_path : str, pred_dir : str, pattern : str=".mp3",
+            n_fft : int=1918, win_length : int=1024, 
+    ) :
+        if pattern[0] != "*" : pattern = "*" + pattern
+
+        input_name_list = glob1(dirname=src_path, pattern=pattern)
+        assert len(input_name_list), AssertionError("In src_path, no match with pattern [{}]".format(pattern))
+
+        def sort_via_dur(name_list) :
+            # path, name, duration
+            var_list = [[src_path + name, name, librosa.get_duration(path=src_path + name)] for name in name_list]
+            var_list = sorted(var_list, key=lambda x : x[2], reverse=True)
+            path_list = [var[0] for var in var_list]
+            name_list = [var[1][:-4] for var in var_list]
+            dur_list = [var[2] for var in var_list]
+            return path_list, name_list, dur_list
+        def solve_path(path) : 
+            if not os.path.exists(path) : os.makedirs(path)
+
+        self._input_path_list, self._name_list, self._input_dur_list = sort_via_dur(input_name_list)
+        self._pred_dir = pred_dir if pred_dir[-1] == "/" else pred_dir + "/"
+        solve_path(self._pred_dir)
+
+        self._input_shape = model_input_shape[1:] if model_input_shape[0] == None else model_input_shape
+        self._sample_arr = np.zeros(self._input_shape[:-1], dtype=np.int0)
+        self._sample_shape = self._sample_arr.shape
+        self._sample_src = librosa.istft(self._sample_arr, n_fft=n_fft, win_length=win_length)
+
+        def estimate_dur(sample_src, path_list) : 
+            sample_dur_list = []
+            tot_dur_list = []
+            for path in path_list : 
+                sample_rate = librosa.get_samplerate(path)
+                sample_dur = librosa.get_duration(y=sample_src, sr=sample_rate)
+                try : tot_dur = librosa.get_duration(path=path)
+                except : tot_dur = librosa.get_duration(filename=path)
+                quotient = tot_dur // sample_dur
+                tot_dur = (quotient + 1) * sample_dur
+
+                sample_dur_list.append(sample_dur)
+                tot_dur_list.append(tot_dur)
+
+            return sample_dur_list, tot_dur_list
+        
+        self._sample_dur_list, self._tot_dur_list = estimate_dur(self._sample_src, self._input_path_list)
+        self._offset_list = np.zeros_like(self._input_path_list, dtype=np.float32)
+
+        self._n_fft = n_fft
+        self._win_len = win_length
+        
+        self.src_index = 0
+        self._output = []
+        self._is_all_done = False
+        self._patience = 1
+        self._count = 0
+
+    def __len__(self):
+        return int(self._tot_dur_list[self.src_index] // self._sample_dur_list[self.src_index]) - 1
+    
+    def __getitem__(self, index):
+        if self._count < self._patience : 
+            self._count += 1
+            return self._gen_data(self.src_index, update=False)
+        return self._gen_data(self.src_index, update=True)
+    
+    def before_pred(self) : 
+        path = self._input_path_list[self.src_index]
+        sample_rate = librosa.get_samplerate(path)
+        pred_dir = self._pred_dir
+        if pred_dir[-1] != "/" : pred_dir += "/"
+        pred_dir += self._name_list[self.src_index] + ".wav"
+        
+        return sample_rate, pred_dir, self._n_fft, self._win_len, self._sample_shape, self.__len__()
+
+    def on_epoch_end(self) :
+        self.src_index += 1
+        self._count = 0
+        if self.src_index >= len(self._input_path_list) : 
+            self._is_all_done = True
+    
+    def _resource_validation(self, sample_src : ndarray) : 
+        if self._sample_src.shape != sample_src.shape : 
+            temp_arr = np.zeros_like(self._sample_src)
+            temp_arr[:len(sample_src)] = sample_src
+            return temp_arr
+        else : return sample_src
+
+    def _gen_data(self, src_index, update=True) : 
+        path = self._input_path_list[src_index]
+        sample_rate = librosa.get_samplerate(path)
+        sample_dur = self._sample_dur_list[src_index]
+        offset = self._offset_list[src_index]
+
+        if offset + sample_dur > self._tot_dur_list[src_index] : 
+            source = librosa.load(path=path, sr=sample_rate, offset=offset)[0]
+        else : 
+            source = librosa.load(path=path, sr=sample_rate, offset=offset, duration=sample_dur)[0]
+        source = self._resource_validation(source)
+        D = librosa.stft(source, n_fft=self._n_fft, win_length=self._win_len)
+        D = complex_to_polar(D)
+
+        if update : self._offset_list[src_index] += sample_dur
+        del source
+        return np.array([D])
+
+    @property
+    def input_shape(self) : 
+        return self._input_shape
 

@@ -33,7 +33,7 @@ def gen_separate_unet(input_shape=(960, 832, 2), encode=5, num_separ=2) -> Model
 
         count = 1
         for concate_layer in concate_list : 
-            filter_num /= 2
+            filter_num = int(filter_num / 2)
 
             conv_trans = Conv2DTranspose(filters=filter_num, kernel_size=5, strides=2, padding="same")(last_layer)
             merge_layer = Concatenate(axis=3)([conv_trans, concate_layer])
@@ -96,7 +96,7 @@ def gen_unet(input_shape=(960, 832, 2), encode=5) :
 
     count = 1
     for concate_layer in concate_list : 
-        filter_num /= 2
+        filter_num = int(filter_num / 2)
 
         conv_trans = Conv2DTranspose(filters=filter_num, kernel_size=5, strides=2, padding="same")(last_layer)
         merge_layer = Concatenate(axis=3)([conv_trans, concate_layer])
