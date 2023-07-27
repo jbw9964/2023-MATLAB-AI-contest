@@ -166,7 +166,7 @@ class EvalGenerator(TrainGenerator) :
 class PredGenerator(Sequence) : 
     def __init__(
             self, model_input_shape : tuple, src_path : str, pred_dir : str, pattern : str=".mp3",
-            n_fft : int=1918, win_length : int=1024, 
+            n_fft : int=1918, win_length : int=1024, sample_rate=None
     ) :
         if pattern[0] != "*" : pattern = "*" + pattern
 
@@ -193,11 +193,13 @@ class PredGenerator(Sequence) :
         self._sample_shape = self._sample_arr.shape
         self._sample_src = librosa.istft(self._sample_arr, n_fft=n_fft, win_length=win_length)
 
+        self._sample_rate = sample_rate
+
         def estimate_dur(sample_src, path_list) : 
             sample_dur_list = []
             tot_dur_list = []
             for path in path_list : 
-                sample_rate = librosa.get_samplerate(path)
+                sample_rate = self._sample_rate if self._sample_rate else librosa.get_samplerate(path)
                 sample_dur = librosa.get_duration(y=sample_src, sr=sample_rate)
                 try : tot_dur = librosa.get_duration(path=path)
                 except : tot_dur = librosa.get_duration(filename=path)
@@ -232,7 +234,7 @@ class PredGenerator(Sequence) :
     
     def before_pred(self) : 
         path = self._input_path_list[self.src_index]
-        sample_rate = librosa.get_samplerate(path)
+        sample_rate = self._sample_rate if self._sample_rate else librosa.get_samplerate(path)
         pred_dir = self._pred_dir
         if pred_dir[-1] != "/" : pred_dir += "/"
         pred_dir += self._name_list[self.src_index] + ".wav"
@@ -254,7 +256,7 @@ class PredGenerator(Sequence) :
 
     def _gen_data(self, src_index, update=True) : 
         path = self._input_path_list[src_index]
-        sample_rate = librosa.get_samplerate(path)
+        sample_rate = self._sample_rate if self._sample_rate else librosa.get_samplerate(path)
         sample_dur = self._sample_dur_list[src_index]
         offset = self._offset_list[src_index]
 

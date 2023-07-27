@@ -16,8 +16,7 @@ from .generators import PredGenerator
 
 def convert_pred(
             model : Model, src_path : str, pred_dir : str, pattern : str=".mp3",
-            max_cache_size : float=2, restrict_cache=False,
-            n_fft : int=1918, win_length : int=1024, 
+            n_fft : int=1918, win_length : int=1024, sample_rate=None
     ) : 
         def check_status() :
             nonlocal total_num, count, stdout_list
@@ -30,9 +29,7 @@ def convert_pred(
                 time.sleep(0.15)
 
         input_shape = model.input_shape
-        pred_generator = PredGenerator(input_shape, src_path, pred_dir, pattern, n_fft, win_length)
-
-        max_cache_size = max_cache_size * (1024**3)
+        pred_generator = PredGenerator(input_shape, src_path, pred_dir, pattern, n_fft, win_length, sample_rate)
 
         total_num = len(pred_generator._input_path_list)
         count = 1
