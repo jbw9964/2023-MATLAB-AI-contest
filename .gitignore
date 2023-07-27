@@ -15,6 +15,9 @@ Data/music/music_only
 data_path
 
 Data/kaggle_sample/kaggle_sample/cv-valid-train
+Data/cv-other-train
+Data/music_data
+Data/voice_data
 jaewon_report/Model/
 Data/cv-invalid/cv-invalid
 Data/cv-other-dev/cv-other-dev
