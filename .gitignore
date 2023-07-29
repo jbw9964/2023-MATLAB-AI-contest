@@ -19,6 +19,7 @@ Data/music/pred_sample_SR11
 data_path
 
 model_save
+temp_path
 Presentation/presentation_eng.pptx
 Presentation/presentation_kor.pptx
 
