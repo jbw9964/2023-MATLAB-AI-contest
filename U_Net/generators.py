@@ -18,15 +18,20 @@ from .utils import complex_to_polar
 
 class TrainGenerator(Sequence) : 
     def __init__(
-            self, src_path : str, bulk_num : int=5, 
-            sample_dur : float=5, max_cache_size : float=2, restrict_cache=False,
+            self, src_path : str, input_pattern="merge*", output_pattern="voice*",
+            bulk_num : int=5, sample_dur : float=5,
+            max_mem_size : float=2, restrict_mem=False,
             n_fft : int=1918, win_length : int=1024, 
             sample_rate=None, shuffle=True
     ) :
         if src_path[-1] != "/" : src_path += "/"
 
-        input_list = [src_path + name for name in glob1(dirname=src_path, pattern="merge*")]
-        output_list = [src_path + name for name in glob1(dirname=src_path, pattern="voice*")]
+        try : input_list = [src_path + name for name in glob1(dirname=src_path, pattern=input_pattern)]
+        except : raise AssertionError("In src_path, no match with input_pattern : [{}]".format(input_pattern))
+        
+        try : output_list = [src_path + name for name in glob1(dirname=src_path, pattern=output_pattern)]
+        except : raise AssertionError("In src_path, no match with output_pattern : [{}]".format(output_pattern))
+        
         
         assert len(input_list) == len(output_list)\
             , AssertionError("The number of source sample must be same. : [{}, | {}]".format(
@@ -71,19 +76,19 @@ class TrainGenerator(Sequence) :
 
         self._src_index = 0
 
-        self._max_cache_size = max_cache_size * (1024**3)
-        self._restrict_cache = restrict_cache
+        self._max_mem_size = max_mem_size * (1024**3)
+        self._restrict_mem = restrict_mem
 
         self.__cache_warning()
     
     def __cache_warning(self) : 
-        if self._max_cache_size <= self.__estimate_cache() : 
-            if self._restrict_cache : 
-                raise MemoryError("Loaded data exceeded max_cache_size.")
+        if self._max_mem_size <= self.__estimate_cache() : 
+            if self._restrict_mem : 
+                raise MemoryError("Loaded data exceeded max_mem_size.")
             else : 
                 with warnings.catch_warnings():
                     warnings.simplefilter("always")
-                    warnings.warn("Loaded data exceeded max_cache_size.", ResourceWarning)
+                    warnings.warn("Loaded data exceeded max_mem_size.", ResourceWarning)
     
     def __estimate_cache(self) : 
         return getsizeof(self._sample_arr) * self._bulk_num * 2
@@ -157,11 +162,11 @@ class ValidGenerator(TrainGenerator) :
 class EvalGenerator(TrainGenerator) : 
     def __init__(
             self, src_path: str, eval_num: int = 5, 
-            sample_dur: float = 5, max_cache_size: float = 2, restrict_cache=False, 
+            sample_dur: float = 5, max_mem_size: float = 2, restrict_mem=False, 
             n_fft: int = 1918, win_length: int = 1024, 
             sample_rate=None, shuffle=False
     ):
-        super().__init__(src_path, eval_num, sample_dur, max_cache_size, restrict_cache, n_fft, win_length, sample_rate, shuffle)
+        super().__init__(src_path, eval_num, sample_dur, max_mem_size, restrict_mem, n_fft, win_length, sample_rate, shuffle)
 
 class PredGenerator(Sequence) : 
     def __init__(

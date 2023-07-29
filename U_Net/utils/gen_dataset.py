@@ -187,8 +187,8 @@ def gen_dataset(
     else : 
         voice_path_list_origin = None
 
-    current = 1 + count
-    total = len(music_path_list) + count
+    current = count
+    total = len(music_path_list) + count - 1
 
     if train_test_split : 
         split_index = int(total * train_test_split)
