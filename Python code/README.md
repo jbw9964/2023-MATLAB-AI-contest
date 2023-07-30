@@ -1,10 +1,13 @@
 
+## Module example with `Jupyter Notebook`
+1. [`How to use utils`](./util_example.ipynb)
+2. [`How to use models`](./model_example.ipynb)
 
+## Module example with `Markdown`
+1. [`How to use utils`](./util_example.md)
+2. [`How to use models`](./model_example.md)
 
-# Dependency
-
-[![Static Badge](https://img.shields.io/badge/Python-3.9.16-blue?label=Python&labelColor=blue&color=black)
-](https://www.python.org/)
+## Dependency
 [![Static Badge](https://img.shields.io/badge/numpy-1.23.5-blue?label=numpy&labelColor=blue&color=black)
 ](https://github.com/numpy/numpy)
 [![Static Badge](https://img.shields.io/badge/librosa-0.10.0.post2-red?label=librosa&labelColor=red&color=black)
@@ -13,24 +16,22 @@
 ](https://github.com/tensorflow/tensorflow)
 [![Static Badge](https://img.shields.io/badge/keras-2.12.0-red?label=keras&labelColor=%23FF0000&color=black)
 ](https://github.com/keras-team/keras)
-===
+
+## Environment
+[![Static Badge](https://img.shields.io/badge/Python-3.9.16-blue?label=Python&labelColor=blue&color=black)
+](https://www.python.org/)
+![Static Badge](https://img.shields.io/badge/macos-gray?style=flat-square)
+![Static Badge](https://img.shields.io/badge/window11-gray?style=flat-square)
 
 
-# reference
-## python practice
-- [Audio AI: isolating vocals from stereo music using Convolutional Neural Networks](https://towardsdatascience.com/audio-ai-isolating-vocals-from-stereo-music-using-convolutional-neural-networks-210532383785)
-- [Open Source Tools & Data for Music Source Separation](https://source-separation.github.io/tutorial/approaches/deep/architectures.html)
-- [open-unmix-pytorch](https://github.com/sigsep/open-unmix-pytorch)
-- [Mixing an audio file with a noise file at any Signal-to-Noise Ratio](https://github.com/Sato-Kunihiko/audio-SNR)
-    - [blog explanation](https://engineering.linecorp.com/ko/blog/voice-waveform-arbitrary-signal-to-noise-ratio-python)
+## Contributors
+[![Static Badge](https://img.shields.io/badge/%40jbw9964-gray?style=flat-square)
+](https://github.com/jbw9964)
+[![Static Badge](https://img.shields.io/badge/%402jae1-blue?style=flat-square)
+](https://github.com/2jae1)
 
-## MATLAB practice
-- [Train Speech Command Recognition Model Using Deep Learning](https://kr.mathworks.com/help/deeplearning/ug/deep-learning-speech-recognition.html)
-
-## Architecture review
-- [U-Net 논문 리뷰 1](https://medium.com/@msmapark2/u-net-%EB%85%BC%EB%AC%B8-%EB%A6%AC%EB%B7%B0-u-net-convolutional-networks-for-biomedical-image-segmentation-456d6901b28a)
-    - [research paper](https://arxiv.org/abs/1611.09326)
-- [U-Net 논문 리뷰 2](https://joungheekim.github.io/2020/09/28/paper-review/)
-- [unet implementation](https://github.com/zhixuhao/unet)
-    - [using keras - functional api](https://github.com/zhixuhao/unet/blob/master/model.py)
-    - [U-net 실제 구현 코드](http://machinelearningkorea.com/2019/08/25/u-net-%EC%8B%A4%EC%A0%9C-%EA%B5%AC%ED%98%84-%EC%BD%94%EB%93%9C/)
+## Reference
+###### [`[1]`]() : [Ronneberger, Olaf, Philipp Fischer, and Thomas Brox. "U-net: Convolutional networks for biomedical image segmentation." Medical Image Computing and Computer-Assisted Intervention–MICCAI 2015: 18th International Conference, Munich, Germany, October 5-9, 2015, Proceedings, Part III 18. Springer International Publishing, 2015.](https://arxiv.org/pdf/1505.04597.pdf)
+###### [`[2]`]() : [Jansson, Andreas, et al. "Singing voice separation with deep u-net convolutional networks." (2017).](https://ejhumphrey.com/assets/pdf/jansson2017singing.pdf)
+###### [`[3]`]() : [Non-copyright background musics from `AShamaluevMusic`](https://www.ashamaluevmusic.com/no-copyright-music)
+###### [`[4]`]() : [Kaggle - Common Voice dataset](https://www.kaggle.com/datasets/mozillaorg/common-voice)
