@@ -2,7 +2,7 @@
 ## Vocal isolation using U-Net architecture
 
 <p align="center">
-  <img src="../images/U-net1.png" width=500px/>
+  <img src="../images/U-net1.png" width=500px />
 </p>
 
 image reference by :
@@ -13,27 +13,27 @@ image reference by :
 1. Generate your own dataset for training
 
 <p align="center">
-  <img src="../images/gen_dataset.gif" width=350px/>
+  <img src="../images/gen_dataset.gif" width=350px />
 </p>
 
 
 2. Build U-Net architecture
 
 <p align="center">
-  <img src="../images/gen_unet.gif" width=250px/>
+  <img src="../images/gen_unet.gif" width=250px >
 </p>
 
 3. Save your memory while training
 
 <p align="center">
-  <img src="../images/TrainGenerator2.gif" width=450px/>
+  <img src="../images/TrainGenerator2.gif" width=450px >
 </p>
 
 
 4. Isolate multiple musics as vocal with once
 
 <p align="center">
-  <img src="../images/convert_pred.gif" width=450px/>
+  <img src="../images/convert_pred.gif" width=450px >
 </p>
 
 
