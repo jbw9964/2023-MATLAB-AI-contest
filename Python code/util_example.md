@@ -154,9 +154,6 @@ If you done correctly, `target_dir` will be look like this.
 
 ```zsh
 $ cd ../Data/target_dir && tree
-```
-
-```zsh
 .
 ├── test_data
 │   ├── merge_007.wav

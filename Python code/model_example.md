@@ -206,9 +206,6 @@ If you done correctly, `pred_dir` may look like this.
 
 ```zsh
 $ cd ../Data/less_trained_pred_sample && tree
-```
-
-```zsh
 .
 ├── merge_007.wav
 ├── merge_008.wav
