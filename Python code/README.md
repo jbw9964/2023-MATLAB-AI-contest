@@ -48,6 +48,8 @@ image reference by :
 ## Dependency
 [![Static Badge](https://img.shields.io/badge/numpy-1.23.5-blue?label=numpy&labelColor=blue&color=black)
 ](https://github.com/numpy/numpy)
+[![Static Badge](https://img.shields.io/badge/ipython-8.12.0-black?label=ipython&labelColor=%23FFA500)
+](https://ipython.org/)
 [![Static Badge](https://img.shields.io/badge/librosa-0.10.0.post2-red?label=librosa&labelColor=red&color=black)
 ](https://github.com/librosa/librosa)
 [![Static Badge](https://img.shields.io/badge/tensorflow-2.12.0-red?label=tensorflow&labelColor=orange&color=black)
