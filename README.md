@@ -11,6 +11,12 @@ image reference by :
 
 ### Sample audio
 
+<audio controls="controls">
+  <source type="audio/wav" src="./Data/well_trained_pred_sample/merge_009.wav"></source>
+  <source type="audio/ogg" src="./Data/well_trained_pred_sample/merge_009.wav"></source>
+  <p>Your browser does not support the audio element.</p>
+</audio>
+
 If audio player is not showing, you can check by clicking [`here`](./Data/well_trained_pred_sample/merge_009.wav).
 
 ---
