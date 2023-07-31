@@ -8,7 +8,7 @@
 image reference by :
 [`[1]`](#1--jansson-andreas-et-al-singing-voice-separation-with-deep-u-net-convolutional-networks-2017)
 
-## What you expect to do with this modeul
+## What you expect to do with this module
 
 1. Generate your own dataset for training
 
