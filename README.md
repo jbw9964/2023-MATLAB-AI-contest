@@ -10,6 +10,7 @@ image reference by :
 ### Download trained model by clicking [`here`](https://drive.google.com/file/d/1MKM8TxM3rqm-2QY-NGf9V_EhRStkPLdZ/view?usp=drive_web)
 
 ### Sample audio
+
 <audio controls="controls">
   <source type="audio/wav" src="./Data/well_trained_pred_sample/merge_009.wav"></source>
   <source type="audio/ogg" src="./Data/well_trained_pred_sample/merge_009.wav"></source>
@@ -24,6 +25,8 @@ If audio player is not showing, you can check by clicking [`here`](./Data/well_t
 ](https://github.com/jbw9964)
 [![Static Badge](https://img.shields.io/badge/%402jae1-blue?style=flat-square)
 ](https://github.com/2jae1)
+
+[![View Vocal isolation using U-Net architecture on File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://kr.mathworks.com/matlabcentral/fileexchange/133017-vocal-isolation-using-u-net-architecture)
 
 ## Reference
 
